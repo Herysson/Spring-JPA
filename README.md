@@ -22,6 +22,27 @@ retidas pelo JVM em tempo de execução.
 
 </div>
 
+Essas são algumas das anotações mais comumente usadas em JPA/Hibernate e suas respectivas funções:
+
+- `@Id`: Indica que o campo anotado é a chave primária da entidade.
+- `@GeneratedValue`: Especifica a estratégia de geração de valores para a chave primária automaticamente.
+- `@Table`: Permite definir informações adicionais sobre a tabela associada à entidade.
+- `@Entity`: Marca a classe como uma entidade persistente.
+- `@Column`: Permite definir informações adicionais sobre a coluna associada ao campo.
+- `@Transient`: Indica que o campo não deve ser persistido no banco de dados.
+- `@Temporal`: Especifica o tipo de dado temporal (data, hora etc.) de um campo de data/hora.
+- `@Embedded`: Marca um campo como embutido, ou seja, parte de outra entidade.
+- `@Embeddable`: Marca uma classe como embutível, ou seja, pode ser parte de outra entidade.
+- `@ElementCollection`: Mapeia uma coleção de tipos básicos ou embeddables.
+- `@OneToMany`: Estabelece uma relação de um-para-muitos entre duas entidades.
+- `@ManyToOne`: Estabelece uma relação de muitos-para-um entre duas entidades.
+- `@ManyToMany`: Estabelece uma relação muitos-para-muitos entre duas entidades.
+- `@OneToOne`: Estabelece uma relação um-para-um entre duas entidades.
+- `@Lob`: Indica que o campo contém um objeto grande (Large Object), como um blob ou clob.
+- `@JoinColumn`: Permite definir informações adicionais sobre a coluna que é usada para a junção de entidades em relacionamentos.
+
+Essas anotações são essenciais para mapear entidades Java para tabelas de banco de dados e para definir o comportamento de persistência.
+
 ```
 @Entity
 @Table(name = "students")
