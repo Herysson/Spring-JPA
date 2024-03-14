@@ -44,15 +44,15 @@ Essas são algumas das anotações mais comumente usadas em JPA/Hibernate e suas
 Essas anotações são essenciais para mapear entidades Java para tabelas de banco de dados e 
 para definir o comportamento de persistência.
 
-## @Id Annotation
-A anotação @Id é usada em Java para marcar um campo como a chave primária de uma entidade. 
+## **@Id Annotation**
+A anotação `@Id` é usada em Java para marcar um campo como a chave primária de uma entidade. 
 Geralmente é utilizada em conjunto com um framework ORM (Object-Relational Mapping) como o Hibernate, 
 que mapeia objetos Java para tabelas de banco de dados relacionais.
 
-A anotação @Id pode ser usada com vários parâmetros para especificar detalhes sobre a chave primária. 
+A anotação `@Id` pode ser usada com vários parâmetros para especificar detalhes sobre a chave primária. 
 Aqui está um exemplo de como a anotação @Id pode ser usada com parâmetros:
 
-```
+``` java
 @Entity
 @Table(name = "students")
 public class Student {
@@ -63,4 +63,14 @@ public class Student {
     // other fields and methods
 }
 ```
+## **@Generated Annotation**
+A anotação ``@GeneratedValue`` é usada em Java para gerar automaticamente valores para colunas de chave primária em uma tabela de banco de dados. Esta anotação é tipicamente usada em conjunto com a anotação ``@Id`` para indicar que um campo específico é a chave primária para uma tabela.
+
+A anotação ``@GeneratedValue`` pode receber um dos quatro parâmetros:
+
+- ``strategy``: Este parâmetro especifica a estratégia a ser usada para gerar a chave primária. Existem quatro estratégias disponíveis: AUTO, IDENTITY, SEQUENCE e TABLE.
+- ``generator``: Este parâmetro especifica o nome do gerador a ser usado para gerar a chave primária.
+
+Aqui está um exemplo de como usar a anotação ``@GeneratedValue`` com o parâmetro ``strategy``:
+
 
