@@ -347,4 +347,65 @@ A anotação ``@OrderColumn`` é usada para especificar o nome da coluna que ser
 Observe que o campo items é uma simples List<String> neste exemplo. Se você quiser usar uma coleção de objetos incorporáveis ​​em vez disso, precisaria definir uma classe separada para os objetos incorporáveis ​​e anotar a classe com a anotação ``@Embeddable``. Você poderia então definir uma coleção de objetos incorporáveis ​​na classe Order e marcá-la com a anotação ``@ElementCollection``.
 
 ## **@OneToMany**
+A anotação ``@OneToMany`` é usada em Java para definir um relacionamento um-para-muitos entre duas entidades. Geralmente é usada quando uma entidade possui uma coleção de outras entidades.
+
+A anotação ``@OneToMany`` aceita vários parâmetros:
+
+- ``targetEntity``: Especifica a classe da entidade de destino. Isso só é necessário se a entidade de destino não for especificada usando genéricos.
+- ``mappedBy``: Especifica o nome do atributo na entidade de destino que mapeia para a chave primária da entidade proprietária.
+- ``cascade``: Especifica as operações de cascata a serem aplicadas à entidade de destino.
+- ``fetch``: Especifica a estratégia de busca a ser usada para a entidade de destino.
+- ``orphanRemoval``: É usado para remover automaticamente entidades filhas quando elas não são mais referenciadas pela entidade pai.
+
+Aqui está um exemplo de como usar a anotação ``@OneToMany``:
+
+```java
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "username")
+    private String username;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addresses;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+```java
+@Entity
+@Table(name = "addresses")
+public class Address {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state")
+    private String state;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+Neste exemplo, a classe User representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "users".
+
+O campo addresses é marcado com a anotação ``@OneToMany`` para indicar que representa uma coleção de objetos Address, sendo que cada objeto Address possui uma referência a um único objeto User. O parâmetro mappedBy é definido como "user", o que indica que o mapeamento é feito através do campo user na classe Address.
+
+O parâmetro cascade é definido como CascadeType.ALL, o que indica que todas as alterações feitas na entidade User devem ser propagadas também para as entidades Address. O parâmetro orphanRemoval é definido como true, o que significa que quaisquer objetos Address que não sejam mais referenciados por um objeto User serão automaticamente excluídos.
+
+A classe Address também representa uma tabela no banco de dados. Ela tem um campo user marcado com a anotação ``@ManyToOne``, o que indica que cada objeto Address está associado a um único objeto User. A anotação JoinColumn é usada para especificar o nome da coluna na tabela addresses que mapeia para a chave primária da tabela users.
+
 
