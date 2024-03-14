@@ -39,14 +39,12 @@ Essas são algumas das anotações mais comumente usadas em JPA/Hibernate e suas
 - `@ManyToMany`: Estabelece uma relação muitos-para-muitos entre duas entidades.
 - `@OneToOne`: Estabelece uma relação um-para-um entre duas entidades.
 - `@Lob`: Indica que o campo contém um objeto grande (Large Object), como um blob ou clob.
-- `@JoinColumn`: Permite definir informações adicionais sobre a coluna que é usada para a
-- junção de entidades em relacionamentos.
+- `@JoinColumn`: Permite definir informações adicionais sobre a coluna que é usada para a junção de entidades em relacionamentos.
 
 Essas anotações são essenciais para mapear entidades Java para tabelas de banco de dados e 
 para definir o comportamento de persistência.
 
-========================================================================================================================================
-
+## @Id Annotation
 A anotação @Id é usada em Java para marcar um campo como a chave primária de uma entidade. 
 Geralmente é utilizada em conjunto com um framework ORM (Object-Relational Mapping) como o Hibernate, 
 que mapeia objetos Java para tabelas de banco de dados relacionais.
