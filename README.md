@@ -118,3 +118,61 @@ public class User {
 ```
 
 Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "users". Isso significa que a classe ``User`` será mapeada para uma tabela do banco de dados chamada "users".
+
+## **@Entity Annotation**
+
+A anotação ``@Entity`` é usada em Java para marcar uma classe como uma classe de entidade, o que significa que ela deve ser mapeada para uma tabela de banco de dados. Esta anotação é tipicamente usada em conjunto com outras anotações, como ``@Table`` e ``@Id``.
+
+Aqui está um exemplo de como usar a anotação ``@Entity``:
+
+```java
+@Entity(name = "User")
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String username;
+    private String password;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados.
+
+##**@Column**
+
+A anotação ``@Column`` é usada em Java para especificar os detalhes de uma coluna específica em uma tabela de banco de dados que um campo deve ser mapeado. Esta anotação pode ser usada para especificar o nome da coluna, seu tipo de dados, comprimento, precisão, escala e outros detalhes específicos do banco de dados.
+
+A anotação ``@Column`` pode receber os seguintes parâmetros:
+
+- ``name``: Este parâmetro especifica o nome da coluna do banco de dados que o campo deve ser mapeado. Se não especificado, o nome padrão é o nome do campo.
+- ``nullable``: Este parâmetro especifica se a coluna pode conter valores nulos ou não.
+- ``unique``: Este parâmetro especifica se a coluna deve conter valores únicos ou não.
+- ``length``: Este parâmetro especifica o comprimento máximo da coluna (para colunas de string).
+- ``precision``: Este parâmetro especifica a precisão da coluna (para colunas numéricas).
+- ``scale``: Este parâmetro especifica a escala da coluna (para colunas numéricas).
+- ``insertable``: Este parâmetro especifica se a coluna deve ser incluída em declarações de inserção SQL ou não.
+- ``updatable``: Este parâmetro especifica se a coluna deve ser incluída em declarações de atualização SQL ou não.
+
+Aqui está um exemplo de como usar a anotação ``@Column`` com os parâmetros ``name`` e ``nullable``:
+
+```java
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "username", nullable = false)
+    private String username;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "users". Os campos username e password são marcados com a anotação ``@Column`` com o parâmetro ``name`` definido como "username" e "password", respectivamente. O parâmetro ``nullable`` é definido como false para ambas as colunas, o que significa que elas não podem conter valores nulos. Isso significa que os campos username e password serão mapeados para colunas não nulas na tabela "users" no banco de dados.
