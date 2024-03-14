@@ -70,8 +70,12 @@ que um campo específico é a chave primária para uma tabela.
 
 A anotação ``@GeneratedValue`` pode receber um dos quatro parâmetros:
 
-- ``strategy``: Este parâmetro especifica a estratégia a ser usada para gerar a chave primária. Existem quatro estratégias disponíveis: AUTO, IDENTITY, SEQUENCE e TABLE.
-  - `GenerationType.IDENTITY:` Essa estratégia delega a geração da chave primária para o banco de dados. Normalmente é usado com colunas de identidade auto-incrementáveis em bancos de dados relacionais como MySQL, PostgreSQL, etc.
+- ``strategy``: Este parâmetro especifica a estratégia a ser usada para gerar a chave primária. Existem quatro estratégias disponíveis: AUTO, IDENTITY, SEQUENCE, TABLE e UUID.
+  - `GenerationType.IDENTITY:` Essa estratégia delega a geração da chave primária para o banco de dados. Normalmente é usado com colunas de identidade auto-incrementáveis em bancos de dados relacionais.
+  - `GenerationType.AUTO`: Essa estratégia permite ao provedor JPA escolher a melhor estratégia de geração de chave primária com base no banco de dados subjacente.
+  - `GenerationType.SEQUENCE:` Essa estratégia é usada para chaves primárias que são geradas por uma sequência no banco de dados. Isso é comum em bancos de dados como Oracle, onde você define uma sequência separada para gerar valores únicos.
+  - `GenerationType.TABLE:` Essa estratégia envolve a criação de uma tabela especial no banco de dados para rastrear os valores de chave primária.
+  - `GenerationType.UUID` é utilizada para gerar valores de chave primária usando identificadores universais únicos (UUIDs). Um UUID é um valor único de 128 bits que é gerado de acordo com algoritmos específicos e que é garantido ser único em um determinado contexto.
 - ``generator``: Este parâmetro especifica o nome do gerador a ser usado para gerar a chave primária.
 
 Aqui está um exemplo de como usar a anotação ``@GeneratedValue`` com o parâmetro ``strategy``:
