@@ -10,7 +10,7 @@ pelo JPA para definir uma relação entre objetos e bancos de dados relacionais.
 A anotação é uma informação suplementar sobre o programa. Os desenvolvedores usam anotações 
 para informar o JPA.
 
-```
+`
 @Entity
 @Table(name = "students")
 public class Student {
@@ -20,4 +20,4 @@ public class Student {
     private Long id;
     // other fields and methods
 }
-```
+`
