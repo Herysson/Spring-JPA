@@ -16,8 +16,12 @@ O Hibernate é a biblioteca ORM mais popular que utiliza as especificações JPA
 anotações adicionais. As anotações podem ser adicionadas ao código-fonte e permitidas a serem 
 retidas pelo JVM em tempo de execução.
 
+<div align="center">
 ![Principais Annotations](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Z91sIw81eeIsjEnLEtseaQ.jpeg)
+</div>
 
+
+<div align="center">
 ```
 @Entity
 @Table(name = "students")
@@ -29,3 +33,5 @@ public class Student {
     // other fields and methods
 }
 ```
+</div>
+
