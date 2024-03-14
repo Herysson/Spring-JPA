@@ -305,4 +305,46 @@ No Exemplo anterior, a classe ``Address`` é marcada com a anotação ``@Embedda
 
 A anotação ``@Embeddable`` é usada para indicar ao provedor JPA que as instâncias da classe ``Address`` devem ser incorporadas aos dados de outra entidade. O provedor JPA mapeia os campos da classe ``Address`` para colunas na mesma tabela que a entidade pai. A entidade pai usaria a anotação ``@Embedded`` para especificar que contém uma instância da classe ``Address``.
 
+No exemplo demonstrado acima, a classe ``Employee`` contém uma instância da classe ``Address`` como um campo. A anotação ``@Embedded`` é usada para indicar que o objeto ``Address`` está incorporado dentro do objeto ``Employee``. O provedor JPA mapeia os campos da classe ``Address`` para colunas na mesma tabela que a entidade ``Employee``.
+
+## **@ElementCollection Annotation**
+A anotação ``@ElementCollection`` é usada em Java para indicar que uma coleção de valores simples ou objetos incorporáveis deve ser persistida em uma tabela separada. A anotação ``@ElementCollection`` é utilizada para definir um relacionamento um-para-muitos entre uma entidade e uma coleção de tipos de valores ou tipos incorporáveis.
+
+A anotação ``@ElementCollection`` aceita vários parâmetros opcionais:
+
+- ``fetch``: Especifica a estratégia de busca a ser usada para a coleção. Por padrão, o tipo de busca é LAZY.
+- ``targetClass``: Especifica a classe dos elementos da coleção. Isso só é necessário se a coleção não for definida usando genéricos.
+
+Aqui está um exemplo de como usar a anotação ``@ElementCollection``:
+
+```java
+@Entity
+@Table(name = "orders")
+public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "customer_name")
+    private String customerName;
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "order_items", joinColumns = @JoinColumn(name = "order_id"))
+    @OrderColumn(name = "item_order")
+    private List<String> items;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+Neste exemplo, a classe Order representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "orders".
+
+O campo items é marcado com a anotação ``@ElementCollection`` para indicar que é uma coleção de valores simples a serem persistidos em uma tabela separada. O parâmetro ``fetch`` é definido como LAZY, o que significa que a coleção será carregada apenas quando acessada pela primeira vez.
+
+A anotação ``@CollectionTable`` é usada para especificar o nome da tabela que será usada para armazenar os elementos da coleção. Neste caso, o nome da tabela é definido como "order_items", e uma coluna de junção é definida com o nome "order_id". Esta coluna de junção será usada para mapear os elementos da coleção para a entidade pai.
+
+A anotação ``@OrderColumn`` é usada para especificar o nome da coluna que será usada para armazenar a ordem dos elementos na coleção. Neste caso, o nome da coluna é definido como "item_order".
+
+Observe que o campo items é uma simples List<String> neste exemplo. Se você quiser usar uma coleção de objetos incorporáveis ​​em vez disso, precisaria definir uma classe separada para os objetos incorporáveis ​​e anotar a classe com a anotação ``@Embeddable``. Você poderia então definir uma coleção de objetos incorporáveis ​​na classe Order e marcá-la com a anotação ``@ElementCollection``.
+
+## **@OneToMany**
 
