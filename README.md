@@ -608,10 +608,10 @@ Oracle [Oracle JPA - Documentation](https://docs.oracle.com/javaee/6/tutorial/do
 
 Jakarta [Jakarta Persistence](https://en.wikipedia.org/wiki/Jakarta_Persistence)
 
-Aqeel Abbas [Hibernate/JPA commonly used Annotations - Aqeel Abbas](https://medium.com/@aqeelabbas3972/hibernate-jpa-commonly-used-annotations-3771dc0e0e)
+Aqeel Abbas [Hibernate/JPA commonly used Annotations](https://medium.com/@aqeelabbas3972/hibernate-jpa-commonly-used-annotations-3771dc0e0e)
 
 Baeldung [Introduction to Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa)
 
-Zehra Gökçe Aynacı [Spring JPA Annotations - Zehra Gökçe Aynacı](https://medium.com/@zehragokce/spring-jpa-annotations-863574d13121)
+Zehra Gökçe Aynacı [Spring JPA Annotations](https://medium.com/@zehragokce/spring-jpa-annotations-863574d13121)
 
 
