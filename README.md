@@ -408,4 +408,84 @@ O parâmetro cascade é definido como CascadeType.ALL, o que indica que todas as
 
 A classe Address também representa uma tabela no banco de dados. Ela tem um campo user marcado com a anotação ``@ManyToOne``, o que indica que cada objeto Address está associado a um único objeto User. A anotação JoinColumn é usada para especificar o nome da coluna na tabela addresses que mapeia para a chave primária da tabela users.
 
+## **@ManyToOne**
 
+A anotação ``@ManyToOne`` é usada em Java para definir um relacionamento muitos-para-um entre duas entidades. Geralmente é usada quando uma entidade possui uma referência a outra entidade.
+
+A anotação ``@ManyToOne`` aceita vários parâmetros:
+
+- ``targetEntity``: Especifica a classe da entidade de destino. Isso só é necessário se a entidade de destino não for especificada usando genéricos.
+- ``cascade``: Especifica as operações de cascata a serem aplicadas à entidade de destino.
+- ``fetch``: Especifica a estratégia de busca a ser usada para a entidade de destino.
+- ``optional``: Especifica se a associação é opcional ou obrigatória. Por padrão, é opcional.
+- 
+Neste exemplo anteriormente citado, a classe Order representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "orders".
+
+O campo customer é marcado com a anotação ``@ManyToOne`` para indicar que representa uma referência a um objeto Customer, sendo que cada objeto Order tem uma referência a um único objeto Customer. A anotação JoinColumn é usada para especificar o nome da coluna na tabela orders que mapeia para a chave primária da tabela customers.
+
+A classe Customer também representa uma tabela no banco de dados. Ela tem um campo orders marcado com a anotação ``@OneToMany``, o que indica que cada objeto Customer tem uma coleção de objetos Order associados a ele. O parâmetro mappedBy é definido como "customer", o que indica que o mapeamento é feito através do campo customer na classe Order.
+
+O parâmetro cascade é definido como CascadeType.ALL, o que indica que todas as alterações feitas na entidade Customer devem ser propagadas também para as entidades Order. O parâmetro orphanRemoval é definido como true, o que significa que quaisquer objetos Order que não sejam mais referenciados por um objeto Customer serão automaticamente excluídos. O parâmetro fetch é definido como FetchType.LAZY, o que significa que o objeto Customer será carregado de forma preguiçosa quando for acessado pela primeira vez.
+
+## **@OneToOne**
+A anotação ``@OneToOne`` é usada em Java para definir um relacionamento um-para-um entre duas entidades. Geralmente é usada quando uma entidade tem uma referência a outra entidade e essa relação é um-para-um.
+
+A anotação ``@OneToOne`` aceita vários parâmetros:
+
+- ``targetEntity``: Especifica a classe da entidade de destino. Isso só é necessário se a entidade de destino não for especificada usando genéricos.
+- ``cascade``: Especifica as operações de cascata a serem aplicadas à entidade de destino.
+- ``fetch``: Especifica a estratégia de busca a ser usada para a entidade de destino.
+- ``optional``: Especifica se a associação é opcional ou obrigatória. Por padrão, é opcional.
+- ``mappedBy``: Especifica o campo na entidade de destino que mapeia de volta para a entidade de origem. Isso é usado em relacionamentos bidirecionais.
+- ``orphanRemoval``: É usado para remover automaticamente entidades filhas quando elas não são mais referenciadas por sua entidade pai.
+
+Aqui está um exemplo de como usar a anotação ``@OneToOne``:
+
+```java
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private UserProfile userProfile;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+```java
+@Entity
+@Table(name = "user_profiles")
+public class UserProfile {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+Neste exemplo, a classe User representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "users".
+
+O campo userProfile é marcado com a anotação ``@OneToOne`` para indicar que representa uma referência a um objeto UserProfile, sendo que cada objeto User tem uma referência a um único objeto UserProfile. O parâmetro ``mappedBy`` é usado para especificar o campo na classe UserProfile que mapeia de volta para a classe User.
+
+A classe UserProfile também representa uma tabela no banco de dados. Ela tem um campo user marcado com a anotação ``@OneToOne``, o que indica que cada objeto UserProfile tem uma referência a um único objeto User associado a ele. A anotação JoinColumn é usada para especificar o nome da coluna na tabela user_profiles que mapeia para a chave primária da tabela users.
+
+O parâmetro cascade é definido como CascadeType.ALL, o que indica que todas as alterações feitas nas entidades User ou UserProfile devem ser propagadas também para a outra entidade. O parâmetro ``orphanRemoval`` é definido como true, o que significa que qualquer objeto UserProfile que não seja mais referenciado por um objeto User será automaticamente excluído. O parâmetro fetch é definido como FetchType.LAZY, o que significa que o objeto UserProfile será carregado de forma preguiçosa quando for acessado pela primeira vez.
