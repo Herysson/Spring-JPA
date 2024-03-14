@@ -346,7 +346,7 @@ A anotação ``@OrderColumn`` é usada para especificar o nome da coluna que ser
 
 Observe que o campo items é uma simples List<String> neste exemplo. Se você quiser usar uma coleção de objetos incorporáveis ​​em vez disso, precisaria definir uma classe separada para os objetos incorporáveis ​​e anotar a classe com a anotação ``@Embeddable``. Você poderia então definir uma coleção de objetos incorporáveis ​​na classe Order e marcá-la com a anotação ``@ElementCollection``.
 
-## **@OneToMany**
+## **@OneToMany Annotation**
 A anotação ``@OneToMany`` é usada em Java para definir um relacionamento um-para-muitos entre duas entidades. Geralmente é usada quando uma entidade possui uma coleção de outras entidades.
 
 A anotação ``@OneToMany`` aceita vários parâmetros:
@@ -427,7 +427,7 @@ A classe Customer também representa uma tabela no banco de dados. Ela tem um ca
 
 O parâmetro cascade é definido como CascadeType.ALL, o que indica que todas as alterações feitas na entidade Customer devem ser propagadas também para as entidades Order. O parâmetro orphanRemoval é definido como true, o que significa que quaisquer objetos Order que não sejam mais referenciados por um objeto Customer serão automaticamente excluídos. O parâmetro fetch é definido como FetchType.LAZY, o que significa que o objeto Customer será carregado de forma preguiçosa quando for acessado pela primeira vez.
 
-## **@OneToOne**
+## **@OneToOne Annotation**
 A anotação ``@OneToOne`` é usada em Java para definir um relacionamento um-para-um entre duas entidades. Geralmente é usada quando uma entidade tem uma referência a outra entidade e essa relação é um-para-um.
 
 A anotação ``@OneToOne`` aceita vários parâmetros:
@@ -489,3 +489,37 @@ O campo userProfile é marcado com a anotação ``@OneToOne`` para indicar que r
 A classe UserProfile também representa uma tabela no banco de dados. Ela tem um campo user marcado com a anotação ``@OneToOne``, o que indica que cada objeto UserProfile tem uma referência a um único objeto User associado a ele. A anotação JoinColumn é usada para especificar o nome da coluna na tabela user_profiles que mapeia para a chave primária da tabela users.
 
 O parâmetro cascade é definido como CascadeType.ALL, o que indica que todas as alterações feitas nas entidades User ou UserProfile devem ser propagadas também para a outra entidade. O parâmetro ``orphanRemoval`` é definido como true, o que significa que qualquer objeto UserProfile que não seja mais referenciado por um objeto User será automaticamente excluído. O parâmetro fetch é definido como FetchType.LAZY, o que significa que o objeto UserProfile será carregado de forma preguiçosa quando for acessado pela primeira vez.
+
+## **@Lob Annotation**
+
+A anotação ``@Lob`` é usada em Java para mapear um campo ou propriedade para uma coluna de objeto grande (LOB) em um banco de dados. Geralmente é usada quando o tamanho dos dados a serem armazenados excede o tamanho máximo de um tipo de coluna padrão, como uma coluna VARCHAR ou TEXT.
+
+A anotação ``@Lob`` não possui parâmetros, mas pode ser usada em conjunto com outras anotações para especificar propriedades adicionais, como o nome e o tipo da coluna.
+
+Aqui está um exemplo de como usar a anotação ``@Lob``:
+
+```java
+@Entity
+@Table(name = "products")
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+     
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    @Lob
+    private String description;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+Neste exemplo, a classe Product representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "products".
+
+O campo description é marcado com a anotação ``@Lob`` para indicar que representa uma coluna de objeto grande no banco de dados. A anotação ``@Column`` também é aplicada ao campo com o parâmetro ``name`` definido como "description". Por padrão, o tipo de coluna para um campo anotado com ``@Lob`` é BLOB para dados binários ou CLOB para dados de caractere, dependendo do tipo Java do campo. No entanto, isso pode ser substituído usando o parâmetro ``columnDefinition`` da anotação ``@Column``.
+
+Neste exemplo, o campo description é do tipo String, então o tipo de coluna padrão CLOB é usado. Se o campo description fosse do tipo byte[], o tipo de coluna padrão BLOB seria usado em vez disso.
+
+Observe que nem todos os bancos de dados suportam colunas LOB, então o comportamento da anotação ``@Lob`` pode variar dependendo do banco de dados usado. Além disso, colunas LOB podem ter tamanhos máximos diferentes dependendo do banco de dados e do tipo de coluna sendo usado.
