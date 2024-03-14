@@ -44,7 +44,7 @@ Essas são algumas das anotações mais comumente usadas em JPA/Hibernate e suas
 Essas anotações são essenciais para mapear entidades Java para tabelas de banco de dados e 
 para definir o comportamento de persistência.
 
-## **@Id Annotation**
+## **@Id**
 A anotação `@Id` é usada em Java para marcar um campo como a chave primária de uma entidade. 
 Geralmente é utilizada em conjunto com um framework ORM (Object-Relational Mapping) como o Hibernate, 
 que mapeia objetos Java para tabelas de banco de dados relacionais.
@@ -63,7 +63,7 @@ public class Student {
     // other fields and methods
 }
 ```
-## **@Generated Annotation**
+## **@Generated**
 A anotação ``@GeneratedValue`` é usada em Java para gerar automaticamente valores para colunas de chave primária 
 em uma tabela de banco de dados. Esta anotação é tipicamente usada em conjunto com a anotação ``@Id`` para indicar 
 que um campo específico é a chave primária para uma tabela.
@@ -90,7 +90,7 @@ public class User {
 
 Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. O campo id é marcado com a anotação ``@Id`` para indicar que é a chave primária da tabela. A anotação ``@GeneratedValue`` também é aplicada ao campo id com o parâmetro ``strategy`` definido como ``GenerationType.IDENTITY``. Isso significa que o banco de dados gerará um valor único para a chave primária de cada nova linha adicionada à tabela, usando uma coluna de identidade.
 
-## **@Table Annotation**
+## **@Table**
 A anotação ``@Table`` é usada em Java para especificar os detalhes da tabela do banco de dados que uma determinada entidade (classe) deve ser mapeada. Esta anotação pode ser usada para especificar o nome da tabela, seu esquema, catálogo, índices e outros detalhes específicos do banco de dados.
 
 A anotação ``@Table`` pode receber os seguintes parâmetros:
@@ -119,7 +119,7 @@ public class User {
 
 Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "users". Isso significa que a classe ``User`` será mapeada para uma tabela do banco de dados chamada "users".
 
-## **@Entity Annotation**
+## **@Entity**
 
 A anotação ``@Entity`` é usada em Java para marcar uma classe como uma classe de entidade, o que significa que ela deve ser mapeada para uma tabela de banco de dados. Esta anotação é tipicamente usada em conjunto com outras anotações, como ``@Table`` e ``@Id``.
 
@@ -177,7 +177,7 @@ public class User {
 
 Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "users". Os campos username e password são marcados com a anotação ``@Column`` com o parâmetro ``name`` definido como "username" e "password", respectivamente. O parâmetro ``nullable`` é definido como false para ambas as colunas, o que significa que elas não podem conter valores nulos. Isso significa que os campos username e password serão mapeados para colunas não nulas na tabela "users" no banco de dados.
 
-## **@Transient Annotation**
+## **@Transient**
 A anotação ``@Transient`` é usada em Java para indicar que um campo não deve ser persistido no banco de dados. Isso significa que o campo não será mapeado para uma coluna do banco de dados e seu valor não será armazenado no banco de dados.
 
 A anotação ``@Transient`` não recebe nenhum parâmetro. Simplesmente é usada para marcar um campo como transitório.
@@ -210,7 +210,7 @@ O campo confirmPassword é marcado com a anotação ``@Transient`` para indicar 
 
 Note que os campos marcados com ``@Transient`` não são serializados por padrão, então eles não serão incluídos em representações JSON ou XML do objeto, a menos que sejam explicitamente incluídos.
 
-## **@Temporal Annotation**
+## **@Temporal**
 
 A anotação ``@Temporal`` é usada em Java para especificar o tipo de uma coluna temporal de banco de dados ou de um campo Java. É utilizada para indicar como um valor de data, hora ou timestamp deve ser armazenado ou recuperado do banco de dados.
 
@@ -253,7 +253,7 @@ O campo eventTime é marcado com a anotação ``@Temporal`` com o parâmetro val
 
 O campo eventTimestamp é marcado com a anotação ``@Temporal`` com o parâmetro value definido como ``TemporalType.TIMESTAMP``. Isso indica que o campo eventTimestamp representa um timestamp, que inclui tanto a data quanto a hora.
 
-## **@Embedded Annotation**
+## **@Embedded**
 
 A anotação ``@Embedded`` é usada em Java para indicar que uma entidade possui um objeto incorporado. Isso significa que os campos do objeto incorporado devem ser mapeados para colunas na tabela do banco de dados da entidade pai.
 
@@ -295,7 +295,7 @@ Neste caso, os campos street, city, state e zipCode do objeto Address são mapea
 
 Note que a classe Address em si não precisa ser anotada com nenhuma anotação especial, já que é um objeto incorporado.
 
-## **@Embeddable Annotation**
+## **@Embeddable**
 
 A anotação ``@Embeddable`` é usada em Java para indicar que uma classe é uma classe incorporável. Uma classe incorporável é uma classe cujas instâncias são armazenadas como parte dos dados de outra entidade. A anotação ``@Embeddable`` é tipicamente usada para anotar uma classe que é usada como um componente dentro de outra entidade.
 
@@ -307,7 +307,7 @@ A anotação ``@Embeddable`` é usada para indicar ao provedor JPA que as instâ
 
 No exemplo demonstrado acima, a classe ``Employee`` contém uma instância da classe ``Address`` como um campo. A anotação ``@Embedded`` é usada para indicar que o objeto ``Address`` está incorporado dentro do objeto ``Employee``. O provedor JPA mapeia os campos da classe ``Address`` para colunas na mesma tabela que a entidade ``Employee``.
 
-## **@ElementCollection Annotation**
+## **@ElementCollection**
 A anotação ``@ElementCollection`` é usada em Java para indicar que uma coleção de valores simples ou objetos incorporáveis deve ser persistida em uma tabela separada. A anotação ``@ElementCollection`` é utilizada para definir um relacionamento um-para-muitos entre uma entidade e uma coleção de tipos de valores ou tipos incorporáveis.
 
 A anotação ``@ElementCollection`` aceita vários parâmetros opcionais:
@@ -346,7 +346,7 @@ A anotação ``@OrderColumn`` é usada para especificar o nome da coluna que ser
 
 Observe que o campo items é uma simples List<String> neste exemplo. Se você quiser usar uma coleção de objetos incorporáveis ​​em vez disso, precisaria definir uma classe separada para os objetos incorporáveis ​​e anotar a classe com a anotação ``@Embeddable``. Você poderia então definir uma coleção de objetos incorporáveis ​​na classe Order e marcá-la com a anotação ``@ElementCollection``.
 
-## **@OneToMany Annotation**
+## **@OneToMany**
 A anotação ``@OneToMany`` é usada em Java para definir um relacionamento um-para-muitos entre duas entidades. Geralmente é usada quando uma entidade possui uma coleção de outras entidades.
 
 A anotação ``@OneToMany`` aceita vários parâmetros:
@@ -427,7 +427,7 @@ A classe Customer também representa uma tabela no banco de dados. Ela tem um ca
 
 O parâmetro cascade é definido como CascadeType.ALL, o que indica que todas as alterações feitas na entidade Customer devem ser propagadas também para as entidades Order. O parâmetro orphanRemoval é definido como true, o que significa que quaisquer objetos Order que não sejam mais referenciados por um objeto Customer serão automaticamente excluídos. O parâmetro fetch é definido como FetchType.LAZY, o que significa que o objeto Customer será carregado de forma preguiçosa quando for acessado pela primeira vez.
 
-## **@OneToOne Annotation**
+## **@OneToOne**
 A anotação ``@OneToOne`` é usada em Java para definir um relacionamento um-para-um entre duas entidades. Geralmente é usada quando uma entidade tem uma referência a outra entidade e essa relação é um-para-um.
 
 A anotação ``@OneToOne`` aceita vários parâmetros:
@@ -490,7 +490,7 @@ A classe UserProfile também representa uma tabela no banco de dados. Ela tem um
 
 O parâmetro cascade é definido como CascadeType.ALL, o que indica que todas as alterações feitas nas entidades User ou UserProfile devem ser propagadas também para a outra entidade. O parâmetro ``orphanRemoval`` é definido como true, o que significa que qualquer objeto UserProfile que não seja mais referenciado por um objeto User será automaticamente excluído. O parâmetro fetch é definido como FetchType.LAZY, o que significa que o objeto UserProfile será carregado de forma preguiçosa quando for acessado pela primeira vez.
 
-## **@Lob Annotation**
+## **@Lob**
 
 A anotação ``@Lob`` é usada em Java para mapear um campo ou propriedade para uma coluna de objeto grande (LOB) em um banco de dados. Geralmente é usada quando o tamanho dos dados a serem armazenados excede o tamanho máximo de um tipo de coluna padrão, como uma coluna VARCHAR ou TEXT.
 
@@ -523,3 +523,54 @@ O campo description é marcado com a anotação ``@Lob`` para indicar que repres
 Neste exemplo, o campo description é do tipo String, então o tipo de coluna padrão CLOB é usado. Se o campo description fosse do tipo byte[], o tipo de coluna padrão BLOB seria usado em vez disso.
 
 Observe que nem todos os bancos de dados suportam colunas LOB, então o comportamento da anotação ``@Lob`` pode variar dependendo do banco de dados usado. Além disso, colunas LOB podem ter tamanhos máximos diferentes dependendo do banco de dados e do tipo de coluna sendo usado.
+
+## **@JoinColumn**
+
+# Utilizando a anotação @JoinColumn no JPA
+
+A anotação `@JoinColumn` no JPA é usada para definir a coluna que deve ser utilizada como chave estrangeira para mapear um relacionamento entre duas entidades. Geralmente é utilizada em conjunto com as anotações `@ManyToOne`, `@OneToMany` e `@OneToOne` para especificar a coluna que deve ser usada como chave estrangeira para o relacionamento.
+
+A anotação `@JoinColumn` fornece diversos parâmetros que podem ser utilizados para personalizar o comportamento do mapeamento:
+
+- `name`: Especifica o nome da coluna de chave estrangeira na tabela que mantém o relacionamento. Se este parâmetro não for especificado, o JPA utilizará o nome da coluna de chave primária da entidade referenciada.
+- `referencedColumnName`: Especifica o nome da coluna de chave primária na entidade referenciada. Se este parâmetro não for especificado, o JPA utilizará o nome da coluna de chave primária da entidade referenciada.
+- `nullable`: Especifica se a coluna de chave estrangeira pode conter valores nulos. Se este parâmetro for definido como `true`, a coluna de chave estrangeira pode conter valores nulos. Se for definido como `false`, a coluna de chave estrangeira não pode conter valores nulos.
+- `unique`: Especifica se a coluna de chave estrangeira deve ser única. Se este parâmetro for definido como `true`, a coluna de chave estrangeira deve ser única. Se for definido como `false`, a coluna de chave estrangeira não precisa ser única.
+- `insertable`: Especifica se a coluna de chave estrangeira deve ser incluída em instruções SQL INSERT geradas pelo JPA. Se este parâmetro for definido como `true`, a coluna de chave estrangeira será incluída em instruções INSERT. Se for definido como `false`, a coluna de chave estrangeira não será incluída em instruções INSERT.
+- `updatable`: Especifica se a coluna de chave estrangeira deve ser incluída em instruções SQL UPDATE geradas pelo JPA. Se este parâmetro for definido como `true`, a coluna de chave estrangeira será incluída em instruções UPDATE. Se for definido como `false`, a coluna de chave estrangeira não será incluída em instruções UPDATE.
+
+## Exemplo de uso do @JoinColumn com parâmetros:
+
+```java
+@Entity
+@Table(name = "employees")
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+```java
+@Entity
+@Table(name = "departments")
+public class Department {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @OneToMany(mappedBy = "department")
+    private List<Employee> employees;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+Neste exemplo, as classes `Employee` e `Department` representam tabelas em um banco de dados. A classe `Employee` possui um relacionamento muitos para um com a classe `Department`, que é representado pelo campo `department`. A anotação `@ManyToOne` é aplicada ao campo para indicar o relacionamento.
+
+A anotação `@JoinColumn` também é aplicada ao campo `department` com o parâmetro `name` definido como "department_id", que especifica o nome da coluna de chave estrangeira na tabela `employees`. O parâmetro `nullable` é definido como `false`, o que especifica que a coluna de chave estrangeira não deve permitir valores nulos.
+
+A classe `Department` também possui um relacionamento um para muitos com a classe `Employee`, que é representado pelo campo `employees`. A anotação `@OneToMany` é aplicada ao campo com o parâmetro `mappedBy` definido como "department", que especifica que o relacionamento é mapeado pelo campo `department` na classe `Employee`.
