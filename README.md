@@ -64,7 +64,9 @@ public class Student {
 }
 ```
 ## **@Generated Annotation**
-A anotação ``@GeneratedValue`` é usada em Java para gerar automaticamente valores para colunas de chave primária em uma tabela de banco de dados. Esta anotação é tipicamente usada em conjunto com a anotação ``@Id`` para indicar que um campo específico é a chave primária para uma tabela.
+A anotação ``@GeneratedValue`` é usada em Java para gerar automaticamente valores para colunas de chave primária 
+em uma tabela de banco de dados. Esta anotação é tipicamente usada em conjunto com a anotação ``@Id`` para indicar 
+que um campo específico é a chave primária para uma tabela.
 
 A anotação ``@GeneratedValue`` pode receber um dos quatro parâmetros:
 
@@ -85,3 +87,7 @@ public class User {
     // other fields and methods omitted for brevity
 }
 ```
+
+Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. O campo id é marcado com a anotação ``@Id`` para indicar que é a chave primária da tabela. A anotação ``@GeneratedValue`` também é aplicada ao campo id com o parâmetro ``strategy`` definido como ``GenerationType.IDENTITY``. Isso significa que o banco de dados gerará um valor único para a chave primária de cada nova linha adicionada à tabela, usando uma coluna de identidade.
+
+## **@Table Annotation**
