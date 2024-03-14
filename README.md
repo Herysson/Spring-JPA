@@ -147,7 +147,7 @@ public class User {
 Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados.
 
 <sub> 
-Obs. nome da tabela será "users". Isso é especificado pela anotação `@Table(name = "users")`. A anotação `@Entity(name = "User")` define o nome da entidade como "User", mas isso é apenas uma convenção para referenciar a entidade em consultas JPQL ou em outros contextos do JPA. 
+Obs. nome da tabela será "users". Isso é especificado pela anotação @Table(name = "users"). A anotação @Entity(name = "User") define o nome da entidade como "User", mas isso é apenas uma convenção para referenciar a entidade em consultas JPQL ou em outros contextos do JPA. 
 </sub>
 
 ## **@Column**
@@ -218,6 +218,10 @@ Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. A a
 O campo confirmPassword é marcado com a anotação ``@Transient`` para indicar que não deve ser persistido no banco de dados. Este campo é apenas utilizado para fins de validação e não deve ser armazenado no banco de dados. Quando o objeto User é salvo no banco de dados, o campo confirmPassword será ignorado.
 
 Note que os campos marcados com ``@Transient`` não são serializados por padrão, então eles não serão incluídos em representações JSON ou XML do objeto, a menos que sejam explicitamente incluídos.
+
+<sub>
+    Em SQL isto pode representar um atributo derivado (calculado / adquirido com base em outros atributos)
+</sub>
 
 ## **@Temporal**
 
@@ -303,7 +307,9 @@ O campo address é marcado com a anotação ``@Embedded`` para indicar que é um
 Neste caso, os campos street, city, state e zipCode do objeto Address são mapeados para as colunas address_street, address_city, address_state e address_zip_code da tabela employees, respectivamente. Isso substitui os mapeamentos de coluna padrão especificados na classe Address.
 
 Note que a classe Address em si não precisa ser anotada com nenhuma anotação especial, já que é um objeto incorporado.
-
+<sub>
+    Em SQL isto é representado como um atributo composto
+</sub>
 ## **@Embeddable**
 
 A anotação ``@Embeddable`` é usada em Java para indicar que uma classe é uma classe incorporável. Uma classe incorporável é uma classe cujas instâncias são armazenadas como parte dos dados de outra entidade. A anotação ``@Embeddable`` é tipicamente usada para anotar uma classe que é usada como um componente dentro de outra entidade.
@@ -315,6 +321,10 @@ No Exemplo anterior, a classe ``Address`` é marcada com a anotação ``@Embedda
 A anotação ``@Embeddable`` é usada para indicar ao provedor JPA que as instâncias da classe ``Address`` devem ser incorporadas aos dados de outra entidade. O provedor JPA mapeia os campos da classe ``Address`` para colunas na mesma tabela que a entidade pai. A entidade pai usaria a anotação ``@Embedded`` para especificar que contém uma instância da classe ``Address``.
 
 No exemplo demonstrado acima, a classe ``Employee`` contém uma instância da classe ``Address`` como um campo. A anotação ``@Embedded`` é usada para indicar que o objeto ``Address`` está incorporado dentro do objeto ``Employee``. O provedor JPA mapeia os campos da classe ``Address`` para colunas na mesma tabela que a entidade ``Employee``.
+
+<sub>
+Quando uma classe implementa a interface Serializable, ela indica que os objetos dessa classe podem ser serializados e desserializados. Isso permite que os objetos sejam armazenados em arquivos, transmitidos pela rede ou passados entre diferentes partes de um programa Java.
+</sub>
 
 ## **@ElementCollection**
 A anotação ``@ElementCollection`` é usada em Java para indicar que uma coleção de valores simples ou objetos incorporáveis deve ser persistida em uma tabela separada. A anotação ``@ElementCollection`` é utilizada para definir um relacionamento um-para-muitos entre uma entidade e uma coleção de tipos de valores ou tipos incorporáveis.
@@ -354,6 +364,10 @@ A anotação ``@CollectionTable`` é usada para especificar o nome da tabela que
 A anotação ``@OrderColumn`` é usada para especificar o nome da coluna que será usada para armazenar a ordem dos elementos na coleção. Neste caso, o nome da coluna é definido como "item_order".
 
 Observe que o campo items é uma simples List<String> neste exemplo. Se você quiser usar uma coleção de objetos incorporáveis ​​em vez disso, precisaria definir uma classe separada para os objetos incorporáveis ​​e anotar a classe com a anotação ``@Embeddable``. Você poderia então definir uma coleção de objetos incorporáveis ​​na classe Order e marcá-la com a anotação ``@ElementCollection``.
+
+<sub>
+    Em SQL isto pode ser representado como um atributo multivalorado
+</sub>
 
 ## **@OneToMany**
 A anotação ``@OneToMany`` é usada em Java para definir um relacionamento um-para-muitos entre duas entidades. Geralmente é usada quando uma entidade possui uma coleção de outras entidades.
@@ -583,3 +597,15 @@ Neste exemplo, as classes `Employee` e `Department` representam tabelas em um ba
 A anotação `@JoinColumn` também é aplicada ao campo `department` com o parâmetro `name` definido como "department_id", que especifica o nome da coluna de chave estrangeira na tabela `employees`. O parâmetro `nullable` é definido como `false`, o que especifica que a coluna de chave estrangeira não deve permitir valores nulos.
 
 A classe `Department` também possui um relacionamento um para muitos com a classe `Employee`, que é representado pelo campo `employees`. A anotação `@OneToMany` é aplicada ao campo com o parâmetro `mappedBy` definido como "department", que especifica que o relacionamento é mapeado pelo campo `department` na classe `Employee`.
+
+
+
+Referências:
+[Spring Data JPA]: (https://docs.spring.io/spring-data/jpa/reference/jpa.html)
+[Oracle JPA - Documentation] (https://docs.oracle.com/javaee/6/tutorial/doc/bnbpz.html)
+[Jakarta Persistence] (https://en.wikipedia.org/wiki/Jakarta_Persistence)
+[Hibernate/JPA commonly used Annotations - Aqeel Abbas] (https://medium.com/@aqeelabbas3972/hibernate-jpa-commonly-used-annotations-3771dc0e0e)
+[Introduction to Spring Data JPA] (https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa)
+[Spring JPA Annotations - Zehra Gökçe Aynacı] (https://medium.com/@zehragokce/spring-jpa-annotations-863574d13121)
+
+
