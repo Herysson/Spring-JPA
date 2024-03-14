@@ -71,7 +71,7 @@ que um campo específico é a chave primária para uma tabela.
 A anotação ``@GeneratedValue`` pode receber um dos quatro parâmetros:
 
 - ``strategy``: Este parâmetro especifica a estratégia a ser usada para gerar a chave primária. Existem quatro estratégias disponíveis: AUTO, IDENTITY, SEQUENCE e TABLE.
-  - Teste
+  - `GenerationType.IDENTITY:` Essa estratégia delega a geração da chave primária para o banco de dados. Normalmente é usado com colunas de identidade auto-incrementáveis em bancos de dados relacionais como MySQL, PostgreSQL, etc.
 - ``generator``: Este parâmetro especifica o nome do gerador a ser usado para gerar a chave primária.
 
 Aqui está um exemplo de como usar a anotação ``@GeneratedValue`` com o parâmetro ``strategy``:
