@@ -141,7 +141,7 @@ public class User {
 
 Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados.
 
-##**@Column**
+## **@Column**
 
 A anotação ``@Column`` é usada em Java para especificar os detalhes de uma coluna específica em uma tabela de banco de dados que um campo deve ser mapeado. Esta anotação pode ser usada para especificar o nome da coluna, seu tipo de dados, comprimento, precisão, escala e outros detalhes específicos do banco de dados.
 
