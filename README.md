@@ -601,11 +601,11 @@ A classe `Department` também possui um relacionamento um para muitos com a clas
 
 
 Referências:
-[Spring Data JPA]: (https://docs.spring.io/spring-data/jpa/reference/jpa.html)
-[Oracle JPA - Documentation] (https://docs.oracle.com/javaee/6/tutorial/doc/bnbpz.html)
-[Jakarta Persistence] (https://en.wikipedia.org/wiki/Jakarta_Persistence)
-[Hibernate/JPA commonly used Annotations - Aqeel Abbas] (https://medium.com/@aqeelabbas3972/hibernate-jpa-commonly-used-annotations-3771dc0e0e)
-[Introduction to Spring Data JPA] (https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa)
-[Spring JPA Annotations - Zehra Gökçe Aynacı] (https://medium.com/@zehragokce/spring-jpa-annotations-863574d13121)
+Spring [Spring Data JPA]: (https://docs.spring.io/spring-data/jpa/reference/jpa.html)
+Oracle [Oracle JPA - Documentation] (https://docs.oracle.com/javaee/6/tutorial/doc/bnbpz.html)
+Jakarta [Jakarta Persistence] (https://en.wikipedia.org/wiki/Jakarta_Persistence)
+Aqeel Abbas [Hibernate/JPA commonly used Annotations - Aqeel Abbas] (https://medium.com/@aqeelabbas3972/hibernate-jpa-commonly-used-annotations-3771dc0e0e)
+Baeldung [Introduction to Spring Data JPA] (https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa)
+Zehra Gökçe Aynacı [Spring JPA Annotations - Zehra Gökçe Aynacı] (https://medium.com/@zehragokce/spring-jpa-annotations-863574d13121)
 
 
