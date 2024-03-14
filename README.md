@@ -91,3 +91,30 @@ public class User {
 Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. O campo id é marcado com a anotação ``@Id`` para indicar que é a chave primária da tabela. A anotação ``@GeneratedValue`` também é aplicada ao campo id com o parâmetro ``strategy`` definido como ``GenerationType.IDENTITY``. Isso significa que o banco de dados gerará um valor único para a chave primária de cada nova linha adicionada à tabela, usando uma coluna de identidade.
 
 ## **@Table Annotation**
+A anotação ``@Table`` é usada em Java para especificar os detalhes da tabela do banco de dados que uma determinada entidade (classe) deve ser mapeada. Esta anotação pode ser usada para especificar o nome da tabela, seu esquema, catálogo, índices e outros detalhes específicos do banco de dados.
+
+A anotação ``@Table`` pode receber os seguintes parâmetros:
+
+- ``name``: Este parâmetro especifica o nome da tabela do banco de dados que a entidade deve ser mapeada. Se não especificado, o nome padrão é o nome da classe da entidade.
+- ``schema``: Este parâmetro especifica o nome do esquema (banco de dados) ao qual a tabela pertence.
+- ``catalog``: Este parâmetro especifica o nome do catálogo (banco de dados) ao qual a tabela pertence.
+- ``uniqueConstraints``: Este parâmetro é usado para especificar uma ou mais restrições únicas na tabela.
+- ``indexes``: Este parâmetro é usado para especificar um ou mais índices na tabela.
+
+Aqui está um exemplo de como usar a anotação ``@Table`` com o parâmetro ``name``:
+
+```java
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String username;
+    private String password;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "users". Isso significa que a classe ``User`` será mapeada para uma tabela do banco de dados chamada "users".
