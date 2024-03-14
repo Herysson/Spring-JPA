@@ -73,4 +73,15 @@ A anotação ``@GeneratedValue`` pode receber um dos quatro parâmetros:
 
 Aqui está um exemplo de como usar a anotação ``@GeneratedValue`` com o parâmetro ``strategy``:
 
+``` java
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    private String username;
+    private String password;
+    // other fields and methods omitted for brevity
+}
+```
