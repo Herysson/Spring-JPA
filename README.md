@@ -176,3 +176,133 @@ public class User {
 ```
 
 Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "users". Os campos username e password são marcados com a anotação ``@Column`` com o parâmetro ``name`` definido como "username" e "password", respectivamente. O parâmetro ``nullable`` é definido como false para ambas as colunas, o que significa que elas não podem conter valores nulos. Isso significa que os campos username e password serão mapeados para colunas não nulas na tabela "users" no banco de dados.
+
+## **@Transient Annotation**
+A anotação ``@Transient`` é usada em Java para indicar que um campo não deve ser persistido no banco de dados. Isso significa que o campo não será mapeado para uma coluna do banco de dados e seu valor não será armazenado no banco de dados.
+
+A anotação ``@Transient`` não recebe nenhum parâmetro. Simplesmente é usada para marcar um campo como transitório.
+
+Aqui está um exemplo de como usar a anotação ``@Transient``:
+
+```java
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "username", nullable = false)
+    private String username;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Transient
+    private String confirmPassword;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+Neste exemplo, a classe ``User`` representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "users". Os campos username e password são marcados com a anotação ``@Column`` para indicar que devem ser persistidos no banco de dados.
+
+O campo confirmPassword é marcado com a anotação ``@Transient`` para indicar que não deve ser persistido no banco de dados. Este campo é apenas utilizado para fins de validação e não deve ser armazenado no banco de dados. Quando o objeto User é salvo no banco de dados, o campo confirmPassword será ignorado.
+
+Note que os campos marcados com ``@Transient`` não são serializados por padrão, então eles não serão incluídos em representações JSON ou XML do objeto, a menos que sejam explicitamente incluídos.
+
+## **@Temporal Annotation**
+
+A anotação ``@Temporal`` é usada em Java para especificar o tipo de uma coluna temporal de banco de dados ou de um campo Java. É utilizada para indicar como um valor de data, hora ou timestamp deve ser armazenado ou recuperado do banco de dados.
+
+A anotação ``@Temporal`` recebe um único parâmetro, value, que especifica o tipo do campo temporal. O parâmetro value pode assumir os seguintes valores:
+
+- ``TemporalType.DATE``: Este valor é usado para indicar que o campo representa apenas uma data, sem nenhuma informação de hora.
+- ``TemporalType.TIME``: Este valor é usado para indicar que o campo representa apenas uma hora, sem nenhuma informação de data.
+- ``TemporalType.TIMESTAMP``: Este valor é usado para indicar que o campo representa um timestamp, que inclui tanto a data quanto a hora.
+
+Aqui está um exemplo de como usar a anotação ``@Temporal`` com o parâmetro value:
+
+```java
+@Entity
+@Table(name = "events")
+public class Event {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "event_date")
+    @Temporal(TemporalType.DATE)
+    private Date eventDate;
+
+    @Column(name = "event_time")
+    @Temporal(TemporalType.TIME)
+    private Date eventTime;
+
+    @Column(name = "event_timestamp")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date eventTimestamp;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+Neste exemplo, a classe ``Event`` representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "events".
+
+O campo eventDate é marcado com a anotação ``@Temporal`` com o parâmetro value definido como ``TemporalType.DATE``. Isso indica que o campo eventDate representa apenas uma data, sem nenhuma informação de hora.
+
+O campo eventTime é marcado com a anotação ``@Temporal`` com o parâmetro value definido como ``TemporalType.TIME``. Isso indica que o campo eventTime representa apenas uma hora, sem nenhuma informação de data.
+
+O campo eventTimestamp é marcado com a anotação ``@Temporal`` com o parâmetro value definido como ``TemporalType.TIMESTAMP``. Isso indica que o campo eventTimestamp representa um timestamp, que inclui tanto a data quanto a hora.
+
+## **@Embedded Annotation**
+
+A anotação ``@Embedded`` é usada em Java para indicar que uma entidade possui um objeto incorporado. Isso significa que os campos do objeto incorporado devem ser mapeados para colunas na tabela do banco de dados da entidade pai.
+
+Aqui está um exemplo de como usar a anotação ``@Embedded``:
+
+```java
+@Entity
+@Table(name = "employees")
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Embedded
+    private Address address;
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+```java
+@Embeddable
+public class Address implements Serializable {
+    private String street;
+    private String city;
+    private String state;
+    private String zipCode;
+    // construtores, getters e setters omitidos por brevidade
+}
+```
+
+Neste exemplo, a classe ``Employee`` representa uma tabela em um banco de dados. A anotação ``@Entity`` é aplicada à classe para indicar que ela deve ser mapeada para uma tabela de banco de dados. A anotação ``@Table`` também é aplicada à classe com o parâmetro ``name`` definido como "employees".
+
+O campo address é marcado com a anotação ``@Embedded`` para indicar que é um objeto incorporado. O parâmetro ``@AttributeOverrides`` é usado para especificar o mapeamento dos campos do objeto Address para as colunas do banco de dados.
+
+Neste caso, os campos street, city, state e zipCode do objeto Address são mapeados para as colunas address_street, address_city, address_state e address_zip_code da tabela employees, respectivamente. Isso substitui os mapeamentos de coluna padrão especificados na classe Address.
+
+Note que a classe Address em si não precisa ser anotada com nenhuma anotação especial, já que é um objeto incorporado.
+
+## **@Embeddable Annotation**
+
+A anotação ``@Embeddable`` é usada em Java para indicar que uma classe é uma classe incorporável. Uma classe incorporável é uma classe cujas instâncias são armazenadas como parte dos dados de outra entidade. A anotação ``@Embeddable`` é tipicamente usada para anotar uma classe que é usada como um componente dentro de outra entidade.
+
+A anotação ``@Embeddable`` não recebe nenhum parâmetro. Aqui está um exemplo de como usar a anotação ``@Embeddable``:
+
+No Exemplo anterior, a classe ``Address`` é marcada com a anotação ``@Embeddable`` para indicar que é uma classe incorporável. A classe ``Address`` contém campos para o endereço de rua, cidade, estado e código postal.
+
+A anotação ``@Embeddable`` é usada para indicar ao provedor JPA que as instâncias da classe ``Address`` devem ser incorporadas aos dados de outra entidade. O provedor JPA mapeia os campos da classe ``Address`` para colunas na mesma tabela que a entidade pai. A entidade pai usaria a anotação ``@Embedded`` para especificar que contém uma instância da classe ``Address``.
+
+
