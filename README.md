@@ -1,4 +1,4 @@
-**#[Spring JPA Annotations]**
+# **Spring JPA Annotations** 
 
 ##[O que é JPA?]
 JPA, que significa Java Persistence API, não é uma ferramenta ou framework por si só; 
