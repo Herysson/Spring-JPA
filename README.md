@@ -7,3 +7,15 @@ como gerenciar dados relacionais em aplicativos Java. Metadados de anotações s
 pelo JPA para definir uma relação entre objetos e bancos de dados relacionais.
 
 ## **O que é Anottation**
+A anotação é uma informação suplementar sobre o programa. Os desenvolvedores usam anotações 
+para informar o JPA.
+
+`@Entity
+@Table(name = "students")
+public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    // other fields and methods
+}`
