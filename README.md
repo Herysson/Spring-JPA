@@ -22,9 +22,6 @@ retidas pelo JVM em tempo de execução.
 
 </div>
 
-
-<div align="center">
-
 ```
 @Entity
 @Table(name = "students")
@@ -36,6 +33,4 @@ public class Student {
     // other fields and methods
 }
 ```
-
-</div>
 
