@@ -220,7 +220,7 @@ O campo confirmPassword é marcado com a anotação ``@Transient`` para indicar 
 Note que os campos marcados com ``@Transient`` não são serializados por padrão, então eles não serão incluídos em representações JSON ou XML do objeto, a menos que sejam explicitamente incluídos.
 
 <sub>
-    Em SQL isto pode representar um atributo derivado (calculado / adquirido com base em outros atributos)
+Em SQL isto pode representar um atributo derivado (calculado / adquirido com base em outros atributos)
 </sub>
 
 ## **@Temporal**
@@ -307,9 +307,11 @@ O campo address é marcado com a anotação ``@Embedded`` para indicar que é um
 Neste caso, os campos street, city, state e zipCode do objeto Address são mapeados para as colunas address_street, address_city, address_state e address_zip_code da tabela employees, respectivamente. Isso substitui os mapeamentos de coluna padrão especificados na classe Address.
 
 Note que a classe Address em si não precisa ser anotada com nenhuma anotação especial, já que é um objeto incorporado.
+
 <sub>
-    Em SQL isto é representado como um atributo composto
+Em SQL isto é representado como um atributo composto
 </sub>
+
 ## **@Embeddable**
 
 A anotação ``@Embeddable`` é usada em Java para indicar que uma classe é uma classe incorporável. Uma classe incorporável é uma classe cujas instâncias são armazenadas como parte dos dados de outra entidade. A anotação ``@Embeddable`` é tipicamente usada para anotar uma classe que é usada como um componente dentro de outra entidade.
@@ -366,7 +368,7 @@ A anotação ``@OrderColumn`` é usada para especificar o nome da coluna que ser
 Observe que o campo items é uma simples List<String> neste exemplo. Se você quiser usar uma coleção de objetos incorporáveis ​​em vez disso, precisaria definir uma classe separada para os objetos incorporáveis ​​e anotar a classe com a anotação ``@Embeddable``. Você poderia então definir uma coleção de objetos incorporáveis ​​na classe Order e marcá-la com a anotação ``@ElementCollection``.
 
 <sub>
-    Em SQL isto pode ser representado como um atributo multivalorado
+Em SQL isto pode ser representado como um atributo multivalorado
 </sub>
 
 ## **@OneToMany**
@@ -377,6 +379,12 @@ A anotação ``@OneToMany`` aceita vários parâmetros:
 - ``targetEntity``: Especifica a classe da entidade de destino. Isso só é necessário se a entidade de destino não for especificada usando genéricos.
 - ``mappedBy``: Especifica o nome do atributo na entidade de destino que mapeia para a chave primária da entidade proprietária.
 - ``cascade``: Especifica as operações de cascata a serem aplicadas à entidade de destino.
+    - `CascadeType.ALL`: Indica que todas as operações de persistência (persist, remove, merge, refresh, detach) feitas na entidade pai devem ser aplicadas às entidades filhas.
+    - `CascadeType.PERSIST`: Indica que a operação de persistência (persist) feita na entidade pai deve ser aplicada às entidades filhas.
+    - `CascadeType.REMOVE`: Indica que a operação de remoção (remove) feita na entidade pai deve ser aplicada às entidades filhas.
+    - `CascadeType.MERGE`: Indica que a operação de merge (merge) feita na entidade pai deve ser aplicada às entidades filhas.
+    - `CascadeType.REFRESH`: Indica que a operação de refresh (refresh) feita na entidade pai deve ser aplicada às entidades filhas.
+    - `CascadeType.DETACH`: Indica que a operação de detach (detach) feita na entidade pai deve ser aplicada às entidades filhas.     
 - ``fetch``: Especifica a estratégia de busca a ser usada para a entidade de destino.
 - ``orphanRemoval``: É usado para remover automaticamente entidades filhas quando elas não são mais referenciadas pela entidade pai.
 
