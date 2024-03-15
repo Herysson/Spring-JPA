@@ -606,7 +606,7 @@ A anotação `@JoinColumn` também é aplicada ao campo `department` com o parâ
 
 A classe `Department` também possui um relacionamento um para muitos com a classe `Employee`, que é representado pelo campo `employees`. A anotação `@OneToMany` é aplicada ao campo com o parâmetro `mappedBy` definido como "department", que especifica que o relacionamento é mapeado pelo campo `department` na classe `Employee`.
 
-##**srping.jpa.hibernate.dll-auto**
+## **srping.jpa.hibernate.dll-auto**
 
 A propriedade `spring.jpa.hibernate.ddl-auto` é usada para controlar o comportamento de criação e atualização de tabelas pelo Hibernate em um ambiente Spring Boot. Aqui estão as opções disponíveis para essa propriedade:
 
@@ -619,6 +619,34 @@ A propriedade `spring.jpa.hibernate.ddl-auto` é usada para controlar o comporta
 `create-drop`: A opção create-drop faz com que o Hibernate **crie o esquema do banco de dados ao iniciar a aplicação e o descarte ao encerrar a aplicação.** Isso é útil principalmente para **ambientes de desenvolvimento e testes**, onde você deseja que o banco de dados seja recriado a cada reinicialização da aplicação.
 
 `none`: A opção none desabilita completamente a funcionalidade de criação e atualização automática do esquema do banco de dados pelo Hibernate. Isso significa que o Hibernate não fará nenhuma alteração no esquema do banco de dados, e cabe ao desenvolvedor garantir que o esquema do banco de dados esteja em sincronia com as entidades mapeadas.
+
+## **spring.datasource.url**
+Para configurar a URL do banco de dados em uma aplicação Spring Boot, você pode definir a propriedade `spring.datasource.url` no arquivo `application.properties`.
+
+Aqui está um exemplo de como configurar a URL do banco de dados em `application.properties`:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/meu_banco_de_dados
+```
+
+Neste exemplo:
+
+- `jdbc:mysql://` é o prefixo que indica que você está usando o driver JDBC do MySQL.
+- `localhost:3306` é o endereço do servidor de banco de dados MySQL e o número da porta.
+- `meu_banco_de_dados` é o nome do banco de dados ao qual você deseja se conectar.
+
+Além disso, certifique-se de que você tenha a dependência correta para o driver JDBC MySQL no seu arquivo `pom.xml` (se estiver usando Maven) ou `build.gradle` (se estiver usando Gradle), para que o Spring Boot possa se conectar ao banco de dados MySQL. Por exemplo, para Maven:
+
+```xml
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.28</version> <!-- versão pode variar -->
+</dependency>
+```
+
+Com essa configuração, o Spring Boot usará a URL do banco de dados fornecida para se conectar ao seu banco de dados MySQL quando a aplicação for inicializada.
+
 
 ### **Referências:**
 
