@@ -606,7 +606,19 @@ A anotação `@JoinColumn` também é aplicada ao campo `department` com o parâ
 
 A classe `Department` também possui um relacionamento um para muitos com a classe `Employee`, que é representado pelo campo `employees`. A anotação `@OneToMany` é aplicada ao campo com o parâmetro `mappedBy` definido como "department", que especifica que o relacionamento é mapeado pelo campo `department` na classe `Employee`.
 
+##**srping.jpa.hibernate.dll-auto**
 
+A propriedade `spring.jpa.hibernate.ddl-auto` é usada para controlar o comportamento de criação e atualização de tabelas pelo Hibernate em um ambiente Spring Boot. Aqui estão as opções disponíveis para essa propriedade:
+
+`validate`: A opção validate faz com que o Hibernate valide o esquema do banco de dados, mas não faça nenhuma alteração nele. Isso significa que o Hibernate não criará, alterará ou excluirá tabelas.
+
+`update`: A opção update faz com que o Hibernate atualize o esquema do banco de dados conforme necessário para se adequar às entidades mapeadas. Isso significa que o Hibernate criará novas tabelas, colunas e restrições conforme necessário, mas **não excluirá ou modificará** as tabelas existentes.
+
+`create`: A opção create faz com que o Hibernate crie o esquema do banco de dados do zero a partir das entidades mapeadas. Isso significa que o Hibernate criará todas as tabelas, colunas e restrições necessárias, **descartando qualquer esquema existente no banco de dados.**
+
+`create-drop`: A opção create-drop faz com que o Hibernate **crie o esquema do banco de dados ao iniciar a aplicação e o descarte ao encerrar a aplicação.** Isso é útil principalmente para **ambientes de desenvolvimento e testes**, onde você deseja que o banco de dados seja recriado a cada reinicialização da aplicação.
+
+`none`: A opção none desabilita completamente a funcionalidade de criação e atualização automática do esquema do banco de dados pelo Hibernate. Isso significa que o Hibernate não fará nenhuma alteração no esquema do banco de dados, e cabe ao desenvolvedor garantir que o esquema do banco de dados esteja em sincronia com as entidades mapeadas.
 
 ### **Referências:**
 
