@@ -525,6 +525,64 @@ A classe UserProfile também representa uma tabela no banco de dados. Ela tem um
 
 O parâmetro cascade é definido como CascadeType.ALL, o que indica que todas as alterações feitas nas entidades User ou UserProfile devem ser propagadas também para a outra entidade. O parâmetro ``orphanRemoval`` é definido como true, o que significa que qualquer objeto UserProfile que não seja mais referenciado por um objeto User será automaticamente excluído. O parâmetro fetch é definido como FetchType.LAZY, o que significa que o objeto UserProfile será carregado de forma preguiçosa quando for acessado pela primeira vez.
 
+## **@ManyToMany**
+
+A anotação `@ManyToMany` é usada em Java para definir um relacionamento muitos-para-muitos entre duas entidades. Isso significa que uma entidade pode estar associada a várias instâncias de outra entidade e vice-versa.
+
+A anotação `@ManyToMany` aceita vários parâmetros:
+
+- `targetEntity`: Especifica a classe da entidade de destino. Isso só é necessário se a entidade de destino não for especificada usando genéricos.
+- `mappedBy`: Especifica o nome do atributo na entidade de destino que mapeia para o relacionamento inverso.
+- `cascade`: Especifica as operações de cascata a serem aplicadas à entidade de destino.
+- `fetch`: Especifica a estratégia de busca a ser usada para a entidade de destino.
+
+Aqui está um exemplo de como usar a anotação `@ManyToMany`:
+
+```java
+@Entity
+@Table(name = "students")
+public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @ManyToMany
+    @JoinTable(
+        name = "student_course",
+        joinColumns = @JoinColumn(name = "student_id"),
+        inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private Set<Course> courses = new HashSet<>();
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+```java
+@Entity
+@Table(name = "courses")
+public class Course {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @ManyToMany(mappedBy = "courses")
+    private Set<Student> students = new HashSet<>();
+    // outros campos e métodos omitidos por brevidade
+}
+```
+
+Neste exemplo, temos duas entidades: `Student` e `Course`. A anotação `@ManyToMany` é aplicada ao campo `courses` na classe `Student` e ao campo `students` na classe `Course`, indicando que existe uma relação muitos-para-muitos entre essas entidades.
+
+A anotação `@JoinTable` é usada para definir a tabela de associação que armazena os relacionamentos entre `Student` e `Course`. O parâmetro `name` especifica o nome da tabela de associação, `joinColumns` especifica a coluna na tabela de associação que faz referência à chave primária de `Student`, e `inverseJoinColumns` especifica a coluna que faz referência à chave primária de `Course`.
+
+Com essa configuração, é possível associar vários cursos a um estudante e vários estudantes a um curso, estabelecendo assim um relacionamento muitos-para-muitos entre essas entidades.
+
 ## **@Lob**
 
 A anotação ``@Lob`` é usada em Java para mapear um campo ou propriedade para uma coluna de objeto grande (LOB) em um banco de dados. Geralmente é usada quando o tamanho dos dados a serem armazenados excede o tamanho máximo de um tipo de coluna padrão, como uma coluna VARCHAR ou TEXT.
@@ -560,8 +618,6 @@ Neste exemplo, o campo description é do tipo String, então o tipo de coluna pa
 Observe que nem todos os bancos de dados suportam colunas LOB, então o comportamento da anotação ``@Lob`` pode variar dependendo do banco de dados usado. Além disso, colunas LOB podem ter tamanhos máximos diferentes dependendo do banco de dados e do tipo de coluna sendo usado.
 
 ## **@JoinColumn**
-
-# Utilizando a anotação @JoinColumn no JPA
 
 A anotação `@JoinColumn` no JPA é usada para definir a coluna que deve ser utilizada como chave estrangeira para mapear um relacionamento entre duas entidades. Geralmente é utilizada em conjunto com as anotações `@ManyToOne`, `@OneToMany` e `@OneToOne` para especificar a coluna que deve ser usada como chave estrangeira para o relacionamento.
 
