@@ -334,8 +334,9 @@ A anotação ``@ElementCollection`` é usada em Java para indicar que uma coleç
 A anotação ``@ElementCollection`` aceita vários parâmetros opcionais:
 
 - ``fetch``: é usado em mapeamentos de relacionamento de entidades JPA (Java Persistence API) para determinar como os dados associados a um relacionamento devem ser recuperados do banco de dados. Ele define a estratégia de carregamento dos dados relacionados quando a entidade principal é carregada.
+
     -`FetchType.LAZY`: Com `FetchType.LAZY`, os dados associados ao relacionamento são carregados sob demanda, ou seja, somente quando são explicitamente acessados pela primeira vez. Essa é a opção mais comum para relacionamentos de muitos para um (`@ManyToOne`) e um para um (`@OneToOne`).
-    - `FetchType.EAGER`: Com `FetchType.EAGER`, os dados associados ao relacionamento são carregados imediatamente junto com a entidade principal. Isso significa que os dados associados são carregados automaticamente quando a entidade principal é recuperada do banco de dados. Isso pode resultar em grandes quantidades de dados sendo carregados desnecessariamente e é geralmente evitado, a menos que seja necessário.
+    -`FetchType.EAGER`: Com `FetchType.EAGER`, os dados associados ao relacionamento são carregados imediatamente junto com a entidade principal. Isso significa que os dados associados são carregados automaticamente quando a entidade principal é recuperada do banco de dados. Isso pode resultar em grandes quantidades de dados sendo carregados desnecessariamente e é geralmente evitado, a menos que seja necessário.
 - ``targetClass``: Especifica a classe dos elementos da coleção. Isso só é necessário se a coleção não for definida usando genéricos.
 
 Aqui está um exemplo de como usar a anotação ``@ElementCollection``:
