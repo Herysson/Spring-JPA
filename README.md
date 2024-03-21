@@ -711,7 +711,8 @@ Com essa configuração, o Spring Boot usará a URL do banco de dados fornecida 
 
 Desenvolver a estrutura de sistema de gerenciamento empresarial completo utilizando Spring Boot com JPA. Neste desafio, você terá a oportunidade de aplicar seus conhecimentos em uma situação realista, criando um sistema capaz de gerenciar funcionários, projetos, departamentos e supervisores para uma empresa.
 
-###Contexto da Empresa:
+### Contexto da Empresa:
+
 Imagine que você está colaborando com uma empresa de médio porte que busca otimizar seus processos internos através da tecnologia. Eles desejam uma solução moderna e eficiente para gerenciar seus recursos humanos e projetos de forma integrada.
 
 Utilizando o Spring Boot com JPA, sua tarefa é projetar e implementar um sistema robusto que atenda às necessidades da empresa. Você deve utilizar a estrutura de dados fornecida pela empresa e representada nas imagens abaixo.
