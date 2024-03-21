@@ -732,37 +732,37 @@ Our goal is to develop a robust product selling system tailored for bars, burger
 
 In the product selling system designed for bars, burger joints, and restaurants, several key entities play crucial roles in facilitating its functionality. Here are the main entities:
 
-    Product:
-        Represents the items available for purchase, such as food items (e.g., burgers, pizzas, salads) and beverages (e.g., soft drinks, alcoholic drinks).
-        Contains attributes like name, description, price, category, availability status, and possibly images.
+Product:
+Represents the items available for purchase, such as food items (e.g., burgers, pizzas, salads) and beverages (e.g., soft drinks, alcoholic drinks).
+Contains attributes like name, description, price, category, availability status, and possibly images.
 
-    Customer:
-        Represents individuals who interact with the system to browse, select, and purchase products.
-        Contains information such as name, contact details, delivery address, payment preferences, and order history.
-        May have an associated authentication credential for secure access to their account.
+Customer:
+Represents individuals who interact with the system to browse, select, and purchase products.
+Contains information such as name, contact details, delivery address, payment preferences, and order history.
+May have an associated authentication credential for secure access to their account.
 
-    Order:
-        Represents a single transaction initiated by a customer to purchase one or more products.
-        Contains details such as the list of products ordered, quantities, total amount, delivery/pickup instructions, and status (e.g., pending, in progress, completed).
-        May include timestamps for order placement and fulfillment.
+Order:
+Represents a single transaction initiated by a customer to purchase one or more products.
+Contains details such as the list of products ordered, quantities, total amount, delivery/pickup instructions, and status (e.g., pending, in progress, completed).
+May include timestamps for order placement and fulfillment.
 
-    User (Business Owner/Admin):
-        Represents individuals responsible for managing the system, including adding/removing products, monitoring orders, and analyzing sales data.
-        Contains information like username, password, role (admin or staff), and possibly contact details.
+User (Business Owner/Admin):
+Represents individuals responsible for managing the system, including adding/removing products, monitoring orders, and analyzing sales data.
+Contains information like username, password, role (admin or staff), and possibly contact details.
 
-    Shopping Cart:
-        Represents a temporary storage mechanism where customers can add products before proceeding to checkout.
-        Contains information about the selected products, quantities, and subtotal amount.
-        Associated with a specific customer session or account to maintain persistence across browsing sessions.
+Shopping Cart:
+Represents a temporary storage mechanism where customers can add products before proceeding to checkout.
+Contains information about the selected products, quantities, and subtotal amount.
+Associated with a specific customer session or account to maintain persistence across browsing sessions.
 
-    Payment:
-        Represents the financial transaction associated with an order.
-        Contains details such as payment method (credit card, debit card, cash), transaction amount, payment status, and transaction ID.
-        May include integration with external payment gateways for secure processing.
+Payment:
+Represents the financial transaction associated with an order.
+Contains details such as payment method (credit card, debit card, cash), transaction amount, payment status, and transaction ID.
+May include integration with external payment gateways for secure processing.
     
-    ### Backend Development with Java Spring Boot:
-    Utilizing Java Spring Boot framework for building a scalable and robust backend infrastructure.
-    Integrating with databases such as MySQL or PostgreSQL to store and retrieve data efficiently.
+### Backend Development with Java Spring Boot:
+Utilizing Java Spring Boot framework for building a scalable and robust backend infrastructure.
+Integrating with databases such as MySQL or PostgreSQL to store and retrieve data efficiently.
 
 ### **Referências:**
 
