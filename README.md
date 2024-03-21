@@ -716,9 +716,13 @@ Imagine que você está colaborando com uma empresa de médio porte que busca ot
 
 Utilizando o Spring Boot com JPA, sua tarefa é projetar e implementar um sistema robusto que atenda às necessidades da empresa. Você deve utilizar a estrutura de dados fornecida pela empresa e representada nas imagens abaixo.
 
+<div align="center">
+    
 ![MER Conceitual](https://github.com/Herysson/Spring-JPA/assets/7634437/36eeb4e7-07db-4256-833d-a90599e7db97)
 
 ![Modelo Físico](https://github.com/Herysson/Spring-JPA/assets/7634437/21d8ab7f-7030-4221-8343-6768de5c987b)
+
+</div>
 
 
 ### **Referências:**
