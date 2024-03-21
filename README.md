@@ -693,6 +693,20 @@ Neste exemplo:
 - `localhost:3306` é o endereço do servidor de banco de dados MySQL e o número da porta.
 - `meu_banco_de_dados` é o nome do banco de dados ao qual você deseja se conectar.
 
+Exemplo utilizado no projeto
+
+```
+#Update the database schema based on the entities create-drop / update
+spring.jpa.hibernate.ddl-auto=create-drop
+#create database if not exists mysql true spring boot
+spring.datasource.url=jdbc:mysql://localhost:3306/SPRING_JPA?createDatabaseIfNotExist=true
+#DB User
+spring.datasource.username=root
+#DB password
+spring.datasource.password=laboratorio
+
+```
+
 Além disso, certifique-se de que você tenha a dependência correta para o driver JDBC MySQL no seu arquivo `pom.xml` (se estiver usando Maven) ou `build.gradle` (se estiver usando Gradle), para que o Spring Boot possa se conectar ao banco de dados MySQL. Por exemplo, para Maven:
 
 ```xml
