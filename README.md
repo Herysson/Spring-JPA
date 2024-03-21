@@ -707,6 +707,19 @@ Além disso, certifique-se de que você tenha a dependência correta para o driv
 
 Com essa configuração, o Spring Boot usará a URL do banco de dados fornecida para se conectar ao seu banco de dados MySQL quando a aplicação for inicializada.
 
+## Prática 1
+
+Desenvolver a estrutura de sistema de gerenciamento empresarial completo utilizando Spring Boot com JPA. Neste desafio, você terá a oportunidade de aplicar seus conhecimentos em uma situação realista, criando um sistema capaz de gerenciar funcionários, projetos, departamentos e supervisores para uma empresa.
+
+###Contexto da Empresa:
+Imagine que você está colaborando com uma empresa de médio porte que busca otimizar seus processos internos através da tecnologia. Eles desejam uma solução moderna e eficiente para gerenciar seus recursos humanos e projetos de forma integrada.
+
+Utilizando o Spring Boot com JPA, sua tarefa é projetar e implementar um sistema robusto que atenda às necessidades da empresa. Você deve utilizar a estrutura de dados fornecida pela empresa e representada nas imagens abaixo.
+
+![MER Conceitual](https://github.com/Herysson/Spring-JPA/assets/7634437/36eeb4e7-07db-4256-833d-a90599e7db97)
+
+![Modelo Físico](https://github.com/Herysson/Spring-JPA/assets/7634437/21d8ab7f-7030-4221-8343-6768de5c987b)
+
 
 ### **Referências:**
 
