@@ -630,8 +630,6 @@ A anotação `@JoinColumn` fornece diversos parâmetros que podem ser utilizados
 - `insertable`: Especifica se a coluna de chave estrangeira deve ser incluída em instruções SQL INSERT geradas pelo JPA. Se este parâmetro for definido como `true`, a coluna de chave estrangeira será incluída em instruções INSERT. Se for definido como `false`, a coluna de chave estrangeira não será incluída em instruções INSERT.
 - `updatable`: Especifica se a coluna de chave estrangeira deve ser incluída em instruções SQL UPDATE geradas pelo JPA. Se este parâmetro for definido como `true`, a coluna de chave estrangeira será incluída em instruções UPDATE. Se for definido como `false`, a coluna de chave estrangeira não será incluída em instruções UPDATE.
 
-## Exemplo de uso do @JoinColumn com parâmetros:
-
 ```java
 @Entity
 @Table(name = "employees")
